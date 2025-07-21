@@ -8,11 +8,16 @@ models:
         description: "Record ID"
       - name: category
         description: "Category"
+      - name: created_date
+        description: "Created date"
 
 semantic_models:
   - name: simple_count_semantic
     model: ref('simple_count')
-    description: "Simple semantic model without time dimensions"
+    description: "Simple semantic model with minimal time dimension"
+    
+    defaults:
+      agg_time_dimension: created_date
     
     entities:
       - name: record
@@ -23,12 +28,18 @@ semantic_models:
       - name: category
         type: categorical
         expr: category
+      - name: created_date
+        type: time
+        expr: created_date
+        type_params:
+          time_granularity: day
     
     measures:
       - name: record_count
         agg: count
         expr: id
         description: "Count of records"
+        agg_time_dimension: created_date
 
 metrics:
   - name: simple_total_count
