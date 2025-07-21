@@ -1,0 +1,9 @@
+version: 2
+
+models:
+  - name: time_spine
+    description: "Time spine table for semantic layer"
+    columns:
+      - name: date_day
+        description: "Date column with daily granularity"
+        data_type: date
