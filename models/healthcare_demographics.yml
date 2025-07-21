@@ -14,6 +14,11 @@ semantic_models:
     model: ref('healthcare_demographics')
     description: "Semantic model for healthcare demographics"
     
+    entities:
+      - name: patient
+        type: primary
+        expr: gender || '_' || age
+    
     dimensions:
       - name: gender
         type: categorical
@@ -41,27 +46,18 @@ semantic_models:
 metrics:
   - name: total_patients
     label: "Total Patients"
-    model: ref('healthcare_demographics')
     type: simple
-    calculation_method: count
-    expression: 1
-    timestamp: null
-    time_grains: []
-    dimensions:
-      - gender
-      - age
-
-  - name: patients_by_gender
-    label: "Patients by Gender"
-    model: ref('healthcare_demographics')
+    type_params:
+      measure: patient_count
+    
+  - name: female_patient_count
+    label: "Female Patient Count"
     type: simple
-    calculation_method: count
-    expression: 1
-    timestamp: null
-    time_grains: []
-    dimensions:
-      - gender
-    filters:
-      - field: gender
-        operator: is_not_null
-        value: "true"
+    type_params:
+      measure: female_count
+      
+  - name: male_patient_count
+    label: "Male Patient Count"
+    type: simple
+    type_params:
+      measure: male_count
