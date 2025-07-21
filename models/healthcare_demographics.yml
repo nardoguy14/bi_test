@@ -8,11 +8,16 @@ models:
         description: "Patient age"
       - name: gender
         description: "Patient gender"
+      - name: record_date
+        description: "Date when the record was captured"
 
 semantic_models:
   - name: healthcare_demographics_semantic
     model: ref('healthcare_demographics')
     description: "Semantic model for healthcare demographics"
+    
+    defaults:
+      agg_time_dimension: record_date
     
     entities:
       - name: patient
@@ -26,6 +31,10 @@ semantic_models:
       - name: age
         type: categorical
         expr: age
+      - name: record_date
+        type: time
+        type_params:
+          time_granularity: day
     
     measures:
       - name: patient_count
