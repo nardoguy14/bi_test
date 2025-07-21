@@ -2,20 +2,10 @@ version: 2
 
 models:
   - name: time_spine
-    description: "Time spine table for semantic layer"
+    description: "A time spine with one row per day, ranging from 2020 to 2030"
+    time_spine:
+      standard_granularity_column: date_day
     columns:
       - name: date_day
-        description: "Date column with daily granularity"
-        data_type: date
-
-semantic_models:
-  - name: metricflow_time_spine
-    description: "Time spine semantic model for MetricFlow"
-    model: ref('time_spine')
-    defaults:
-      agg_time_dimension: date_day
-    dimensions:
-      - name: date_day
-        type: time
-        type_params:
-          time_granularity: day
+        description: "The base date column for daily granularity"
+        granularity: day
