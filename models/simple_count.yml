@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: simple_count
+    description: "Simple test model for metrics"
+    columns:
+      - name: id
+        description: "Record ID"
+      - name: category
+        description: "Category"
+
+semantic_models:
+  - name: simple_count_semantic
+    model: ref('simple_count')
+    description: "Simple semantic model without time dimensions"
+    
+    entities:
+      - name: record
+        type: primary
+        expr: id
+    
+    dimensions:
+      - name: category
+        type: categorical
+        expr: category
+    
+    measures:
+      - name: record_count
+        agg: count
+        expr: id
+        description: "Count of records"
+
+metrics:
+  - name: simple_total_count
+    label: "Simple Total Count"
+    type: simple
+    type_params:
+      measure: record_count
+    description: "Simple count metric with no time dimension"
