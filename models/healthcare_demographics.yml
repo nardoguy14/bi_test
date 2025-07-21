@@ -1,0 +1,67 @@
+version: 2
+
+models:
+  - name: healthcare_demographics
+    description: "Demographics data from healthcare dataset"
+    columns:
+      - name: age
+        description: "Patient age"
+      - name: gender
+        description: "Patient gender"
+
+semantic_models:
+  - name: healthcare_demographics_semantic
+    model: ref('healthcare_demographics')
+    description: "Semantic model for healthcare demographics"
+    
+    dimensions:
+      - name: gender
+        type: categorical
+        expr: gender
+      - name: age
+        type: categorical
+        expr: age
+    
+    measures:
+      - name: patient_count
+        agg: count
+        expr: 1
+        description: "Count of patients"
+      
+      - name: female_count
+        agg: sum
+        expr: case when gender = 'Female' then 1 else 0 end
+        description: "Count of female patients"
+      
+      - name: male_count
+        agg: sum
+        expr: case when gender = 'Male' then 1 else 0 end
+        description: "Count of male patients"
+
+metrics:
+  - name: total_patients
+    label: "Total Patients"
+    model: ref('healthcare_demographics')
+    type: simple
+    calculation_method: count
+    expression: 1
+    timestamp: null
+    time_grains: []
+    dimensions:
+      - gender
+      - age
+
+  - name: patients_by_gender
+    label: "Patients by Gender"
+    model: ref('healthcare_demographics')
+    type: simple
+    calculation_method: count
+    expression: 1
+    timestamp: null
+    time_grains: []
+    dimensions:
+      - gender
+    filters:
+      - field: gender
+        operator: is_not_null
+        value: "true"
