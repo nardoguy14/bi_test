@@ -33,6 +33,12 @@ semantic_models:
         expr: age
       - name: record_date
         type: time
+        expr: record_date
+        type_params:
+          time_granularity: day
+      - name: metric_time
+        type: time
+        expr: record_date
         type_params:
           time_granularity: day
     
