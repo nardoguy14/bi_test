@@ -37,3 +37,4 @@ models:
     # Time spine model for semantic layer
     time_spine:
       +materialized: table
+
