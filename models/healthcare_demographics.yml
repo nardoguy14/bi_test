@@ -43,21 +43,18 @@ semantic_models:
         expr: 1
         description: "Count of patients"
         agg_time_dimension: record_date
-        treat_null_values_as_zero: true
       
       - name: female_count
         agg: sum
         expr: case when gender = 'Female' then 1 else 0 end
         description: "Count of female patients"
         agg_time_dimension: record_date
-        treat_null_values_as_zero: true
       
       - name: male_count
         agg: sum
         expr: case when gender = 'Male' then 1 else 0 end
         description: "Count of male patients"
         agg_time_dimension: record_date
-        treat_null_values_as_zero: true
 
 metrics:
   - name: total_patients
