@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: nardosdb
+    database: nardosdb
+    schema: public
+    tables:
+      - name: healthcare_dataset
+        description: "Healthcare dataset from nardosdb"
