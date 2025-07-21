@@ -2,5 +2,5 @@
 select
     age,
     gender,
-    current_date - ((row_number() over (order by age, gender)) % 90)::integer as record_date
+    cast(current_date - ((row_number() over (order by age, gender)) % 90)::integer as date) as record_date
 from {{ source('nardosdb', 'healthcare_dataset') }}

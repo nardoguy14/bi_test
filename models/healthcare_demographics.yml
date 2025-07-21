@@ -19,6 +19,8 @@ semantic_models:
     defaults:
       agg_time_dimension: record_date
     
+    primary_entity: patient
+    
     entities:
       - name: patient
         type: primary
@@ -33,7 +35,7 @@ semantic_models:
         expr: age
       - name: record_date
         type: time
-        expr: record_date
+        expr: record_date::timestamp
         type_params:
           time_granularity: day
     
