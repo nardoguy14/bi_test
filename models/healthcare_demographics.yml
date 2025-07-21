@@ -61,15 +61,18 @@ metrics:
     type: simple
     type_params:
       measure: patient_count
+    time_granularity: day
     
   - name: female_patient_count
     label: "Female Patient Count"
     type: simple
     type_params:
       measure: female_count
+    time_granularity: day
       
   - name: male_patient_count
     label: "Male Patient Count"
     type: simple
     type_params:
       measure: male_count
+    time_granularity: day
