@@ -35,7 +35,7 @@ semantic_models:
         type: time
         expr: record_date::timestamp
         type_params:
-          time_granularity: day
+          time_granularity: month
     
     measures:
       - name: patient_count

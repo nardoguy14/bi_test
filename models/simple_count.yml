@@ -32,7 +32,7 @@ semantic_models:
         type: time
         expr: created_date
         type_params:
-          time_granularity: day
+          time_granularity: month
     
     measures:
       - name: record_count
